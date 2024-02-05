@@ -23,11 +23,13 @@ namespace IOExtensions
                 AuthorizationRuleCollection rules;
                 if (isDir == true)
                 {
-                    rules = Directory.GetAccessControl(itemPath).GetAccessRules(true, true, typeof(SecurityIdentifier));
+                    var dirInfo = new DirectoryInfo(itemPath);
+                    rules = dirInfo.GetAccessControl().GetAccessRules(true, true, typeof(SecurityIdentifier));
                 }
                 else
                 {
-                    rules = File.GetAccessControl(itemPath).GetAccessRules(true, true, typeof(SecurityIdentifier));
+                    var fileInfo = new FileInfo(itemPath);
+                    rules = fileInfo.GetAccessControl().GetAccessRules(true, true, typeof(SecurityIdentifier));
                 }
                 
                 var identity = WindowsIdentity.GetCurrent();
