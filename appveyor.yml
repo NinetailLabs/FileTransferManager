@@ -1,0 +1,17 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+clone_script:
+- cmd: >-
+    git clone -q --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
+
+    cd %APPVEYOR_BUILD_FOLDER%
+
+    git checkout -qf %APPVEYOR_REPO_COMMIT%
+
+    git submodule update --init --recursive
+environment:
+  NugetKey:
+    secure: B6DCxFCtVkjfyGh11BzPZA/lbJ85RQudxGwL9mG8skEiL2tFOCqQlXdg1ZfMKCtQ
+build_script:
+- ps: .\build.ps1 --branch $env:APPVEYOR_REPO_BRANCH --buildCounter $env:APPVEYOR_BUILD_NUMBER --gitHash $env:APPVEYOR_REPO_COMMIT --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE
+test: off
