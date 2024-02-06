@@ -1,9 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOExtensions", "IOExtensions\IOExtensions.csproj", "{CF3ADDC6-0809-4FF6-B5E5-E40189D2BB34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VaraniumSharp.FileTransferManager", "VaraniumSharp.FileTransferManager\VaraniumSharp.FileTransferManager.csproj", "{CF3ADDC6-0809-4FF6-B5E5-E40189D2BB34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
