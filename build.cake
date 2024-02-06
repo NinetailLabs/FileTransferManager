@@ -26,6 +26,7 @@ Task ("VariableSetup")
 		releaseBinaryType = "dll";
 		repoOwner = "NinetailLabs";
 		gitRepo = string.Format("https://github.com/{0}/{1}.git", repoOwner, "FileTransferManager");
+		testPassed = true;
 		toolVersion = MSBuildToolVersion.VS2022;
 	});
 
