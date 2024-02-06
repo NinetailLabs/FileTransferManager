@@ -1,24 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <AssemblyTitle>FileTransferManager</AssemblyTitle>
-    <Description>Copy and move files/folders functionality with reporting a progress</Description>
-    <Company>Martin Chrzan</Company>
-    <Product>IOExtensions</Product>
-    <Copyright>Martin Chrzan ©  2019-2021</Copyright>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="NuGet.CommandLine">
-      <Version>6.8.0</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.IO.FileSystem.AccessControl" Version="5.0.0" />
-  </ItemGroup>
+
+	<PropertyGroup>
+	    <TargetFramework>netstandard2.0</TargetFramework>
+	    <OutputType>Library</OutputType>
+	    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+	    <AssemblyTitle>FileTransferManager</AssemblyTitle>
+	    <Description>Copy and move files/folders functionality with reporting a progress</Description>
+	    <Company>Martin Chrzan</Company>
+	    <Product>IOExtensions</Product>
+	    <Copyright>Martin Chrzan ©  2019-2021</Copyright>
+	    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+	    <FileVersion>2.0.0.0</FileVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>bin\Release\netstandard2.0\VaraniumSharp.FileTransferManager.xml</DocumentationFile>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(APPVEYOR)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="NuGet.CommandLine">
+			<Version>6.8.0</Version>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+		<PackageReference Include="System.IO.FileSystem.AccessControl" Version="5.0.0" />
+	</ItemGroup>
 </Project>
