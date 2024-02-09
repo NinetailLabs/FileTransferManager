@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using Microsoft.Extensions.Logging;
+using VaraniumSharp.Logging;
 
 namespace VaraniumSharp.FileTransferManager
 {
@@ -49,7 +52,8 @@ namespace VaraniumSharp.FileTransferManager
 
                 foreach (FileSystemAccessRule rule in rules)
                 {
-                    if (rule.IdentityReference.ToString() == userSid || (identity.Groups?.Contains(rule.IdentityReference) ?? false))
+                    if (rule.IdentityReference.ToString() == userSid ||
+                        (identity.Groups?.Contains(rule.IdentityReference) ?? false))
                     {
                         if ((accessRight & rule.FileSystemRights) == accessRight)
                         {
@@ -66,8 +70,11 @@ namespace VaraniumSharp.FileTransferManager
                     }
                 }
             }
-            // TODO - Should not swallow exceptions, though maybe this was done on purpose?
-            catch { }
+            catch (Exception exception)
+            {
+                var logger = StaticLogger.LoggerFactory.CreateLogger(nameof(AccessRightsChecker));
+                logger.LogError(exception, "An error occurred while checking access rights");
+            }
             return false;
         }
 

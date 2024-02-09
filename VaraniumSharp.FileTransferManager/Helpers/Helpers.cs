@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using Microsoft.Extensions.Logging;
 using VaraniumSharp.FileTransferManager.Enumerations;
 using VaraniumSharp.FileTransferManager.Models;
+using VaraniumSharp.Logging;
 
 namespace VaraniumSharp.FileTransferManager
 {
@@ -55,9 +57,10 @@ namespace VaraniumSharp.FileTransferManager
                     size += DirSize(di);
                 }
             }
-            // TODO - We really shouldn't swallow exceptions - When adding VaraniumSharp look into using the logging extensions to log this
-            catch
+            catch (Exception exception)
             {
+                var logger = StaticLogger.LoggerFactory.CreateLogger(nameof(Helpers));
+                logger.LogError(exception, "An error occured while retrieving DirSize");
             }
 
             return size;
