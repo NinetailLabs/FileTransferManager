@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace IOExtensions
+// ReSharper disable InconsistentNaming
+
+namespace VaraniumSharp.FileTransferManager
 {
     internal static class NativeMethods
     {
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        internal static extern bool MoveFileWithProgress(string lpExistingFileName, string lpNewFileName, CopyProgressRoutine lpProgressRoutine, IntPtr lpData, MoveFileFlags dwCopyFlags);
+        #region Private Methods
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool CopyFileEx(string lpExistingFileName, string lpNewFileName, CopyProgressRoutine lpProgressRoutine, IntPtr lpData, ref int pbCancel, CopyFileFlags dwCopyFlags);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        internal static extern bool MoveFileWithProgress(string lpExistingFileName, string lpNewFileName, CopyProgressRoutine lpProgressRoutine, IntPtr lpData, MoveFileFlags dwCopyFlags);
+
+        #endregion
 
         internal delegate CopyProgressResult CopyProgressRoutine(long TotalFileSize, long TotalBytesTransferred, long StreamSize, long StreamBytesTransferred, uint dwStreamNumber, CopyProgressCallbackReason dwCallbackReason, IntPtr hSourceFile, IntPtr hDestinationFile, IntPtr lpData);
 
@@ -31,7 +37,7 @@ namespace IOExtensions
         [Flags]
         internal enum MoveFileFlags : uint
         {
-            MOVE_FILE_REPLACE_EXISTSING = 1,
+            MOVE_FILE_REPLACE_EXISTING = 1,
             MOVE_FILE_COPY_ALLOWED = 2,
             MOVE_FILE_DELAY_UNTIL_REBOOT = 4,
             MOVE_FILE_WRITE_THROUGH = 8,
