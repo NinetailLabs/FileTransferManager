@@ -19,6 +19,7 @@
 	    <dependencies>
 			<group targetFramework=".NetStandard2.0">
 				<dependency id="System.IO.FileSystem.AccessControl" version="5.0.0" />
+				<dependency id="VaraniumSharp" version="5.2.0" />
 			</group>
         </dependencies>
     </metadata>
