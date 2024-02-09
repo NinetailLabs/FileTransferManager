@@ -11,7 +11,10 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Copy and move files/folders functionality with reporting a progress</description>
         <releaseNotes>
-	    Moved to NetStandard2.0
+		Added interface and wrapper class for use with dependency injection.
+	    Internal reorganization of files and namespaces.
+		General code cleanup.
+		Added logging for exceptions rather than swallowing them.
 	    </releaseNotes>
 	    <readme>docs\README.md</readme>
 	    <icon>images\nugetIcon.png</icon>
